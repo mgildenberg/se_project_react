@@ -1,0 +1,24 @@
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.card__name-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  align-items: center;
+  top: 18px;
+}
+
+.card__name {
+  border-radius: 4px;
+  padding: 2px 12px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #fff;
+  font-family: "Cabinet Grotesk - Bold", sans-serif;
+  font-size: 16px;
+  line-height: 1.2;
+}
