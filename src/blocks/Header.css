@@ -5,7 +5,7 @@
   align-items: center;
   min-height: 60px;
   padding: 0 20px;
-  font-family: "Cabinet Grotesk";
+  /* font-family: "Cabinet Grotesk - Medium"; */
   font-weight: 700;
   font-size: 20px;
 }
@@ -24,7 +24,7 @@
 
 .header__button {
   border: none;
-  font-family: "Cabinet Grotesk";
+  /* font-family: "Cabinet Grotesk - Medium"; */
   font-weight: 700;
   font-size: 20px;
   background: none;

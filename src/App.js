@@ -5,13 +5,18 @@ import Main from "./components/Main";
 import Footer from "./components/Footer";
 import ModalWithForm from "./components/ModalWithForm";
 import ItemModal from "./components/ItemModal";
-import { getForecastWeather, parseWeatherData } from "./utils/weatherApi";
+import {
+  getForecastWeather,
+  parseWeatherData,
+  parseWeatherLocation,
+} from "./utils/weatherApi";
 
 function App() {
   // const weatherTemp = "102°F"; // this will be replaced
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);
+  const [location, setLocation] = useState("");
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -32,16 +37,9 @@ function App() {
       // console.log(data);
       const temp = parseWeatherData(data);
       setTemp(temp);
-
-      // const weather = () = {if (temperature >= 86) {
-      //   return 'hot';
-      // } else if (temperature >= 66 && temperature <= 85) {
-      //   return 'warm';
-      // } else if (temperature <= 65) {
-      //   return 'cold';
-      // }}
-
-      // set;
+      const location = parseWeatherLocation(data);
+      // setLocation("Arizona");
+      setLocation(location);
     });
   }, []);
 
@@ -50,7 +48,7 @@ function App() {
 
   return (
     <div>
-      <Header onCreateModal={handleCreateModal} />
+      <Header onCreateModal={handleCreateModal} weatherLocation={location} />
       <Main weatherTemp={weatherTemp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (

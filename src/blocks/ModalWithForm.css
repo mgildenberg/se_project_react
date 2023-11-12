@@ -18,8 +18,16 @@
   padding: 34px 36px;
 }
 
-form {
-  /* i added this section */
-  display: flex;
-  flex-direction: column;
+.modal__submit-button {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  border-color: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  margin-top: 32px;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
 }

@@ -30,3 +30,15 @@ export const parseWeatherData = (data) => {
   //   const weather = main && main.weather;
   return Math.ceil(temperature);
 };
+
+export const parseWeatherLocation = (data) => {
+  //   console.log("parseWeatherData", data);
+  // const main = data.main;
+  //   console.log("main", main);
+  console.log("data name", data.name);
+  const location = data.name;
+
+  console.log("location", location);
+  //   const weather = main && main.weather;
+  return location;
+};

@@ -1,8 +1,19 @@
 import "../blocks/Header.css";
 // import logo from "./logo.svg";
+// import { useMemo } from "react";
+// import { parseWeatherLocation } from "..utils/weatherApi.js";
 
-const Header = ({ onCreateModal }) => {
+const Header = ({ onCreateModal, weatherLocation }) => {
   console.log("Header");
+
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
+
+  const currentLocation = weatherLocation;
+  console.log("currentLocation", currentLocation);
+  // const currentLocation = "Arizona";
 
   return (
     <header className="header">
@@ -10,7 +21,9 @@ const Header = ({ onCreateModal }) => {
         <div>
           <img src={require("../images/logo.svg").default} alt="logo"></img>
         </div>
-        <div>Date</div>
+        <div>
+          {currentDate}, {currentLocation}
+        </div>
       </div>
       <div className="header__avatar-logo">
         <div>
