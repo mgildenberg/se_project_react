@@ -1,4 +1,4 @@
-import "./Header.css";
+import "../blocks/Header.css";
 // import logo from "./logo.svg";
 
 const Header = ({ onCreateModal }) => {
@@ -14,8 +14,12 @@ const Header = ({ onCreateModal }) => {
       </div>
       <div className="header__avatar-logo">
         <div>
-          <button type="text" onClick={onCreateModal}>
-            + Add New Clothes
+          <button
+            className="header__button"
+            type="text"
+            onClick={onCreateModal}
+          >
+            + Add Clothes
           </button>
         </div>
         <div>Name</div>

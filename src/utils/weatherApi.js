@@ -25,6 +25,7 @@ export const parseWeatherData = (data) => {
   const main = data.main;
   //   console.log("main", main);
   const temperature = main && main.temp;
+
   console.log("temperature", temperature);
   //   const weather = main && main.weather;
   return Math.ceil(temperature);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import Header from "./Header/Header";
-import Main from "./Main/Main";
-import Footer from "./footer/Footer";
-import ModalWithForm from "./ModalWithForm/ModalWithForm";
-import ItemModal from "./ItemModal/ItemModal";
-import { getForecastWeather, parseWeatherData } from "./util/weatherApi";
+import Header from "./components/Header";
+import Main from "./components/Main";
+import Footer from "./components/Footer";
+import ModalWithForm from "./components/ModalWithForm";
+import ItemModal from "./components/ItemModal";
+import { getForecastWeather, parseWeatherData } from "./utils/weatherApi";
 
 function App() {
   // const weatherTemp = "102°F"; // this will be replaced
@@ -30,13 +30,23 @@ function App() {
   useEffect(() => {
     getForecastWeather().then((data) => {
       // console.log(data);
-      const temperature = parseWeatherData(data);
-      setTemp(temperature);
+      const temp = parseWeatherData(data);
+      setTemp(temp);
+
+      // const weather = () = {if (temperature >= 86) {
+      //   return 'hot';
+      // } else if (temperature >= 66 && temperature <= 85) {
+      //   return 'warm';
+      // } else if (temperature <= 65) {
+      //   return 'cold';
+      // }}
+
+      // set;
     });
   }, []);
 
-  console.log(temp);
-  const weatherTemp = `${temp}°F`;
+  // console.log(temp);
+  const weatherTemp = temp; //`${temp}°F`;
 
   return (
     <div>
