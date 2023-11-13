@@ -2,6 +2,8 @@
   position: relative;
   display: flex;
   justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
 }
 
 .card__name-container {
@@ -18,7 +20,7 @@
   padding: 2px 12px;
   color: rgba(0, 0, 0, 0.6);
   background-color: #fff;
-  font-family: "Cabinet Grotesk - Bold", sans-serif;
+  font-family: "Cabinet Grotesk", sans-serif;
   font-size: 16px;
   line-height: 1.2;
 }
@@ -27,7 +29,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  justify-content: center;
+  justify-content: left;
   margin-top: 20px;
 }
 
@@ -41,5 +43,5 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  margin-top: 20px;
+  margin-top: 40px;
 }

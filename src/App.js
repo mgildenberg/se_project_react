@@ -55,25 +55,64 @@ function App() {
         <ModalWithForm title="New Garment" onClose={handleCloseModal}>
           <label>
             Name
-            <input type="text" name="name" minLength="1" maxLength="30" />
+            <input
+              className="modal__input"
+              type="text"
+              name="name"
+              minLength="1"
+              maxLength="30"
+              placeholder="Name"
+              required
+            />
           </label>
           <label>
             Image URL
-            <input type="url" name="link" minlength="1"></input>
+            <input
+              className="modal__input"
+              type="url"
+              name="link"
+              minlength="1"
+              placeholder="Image URL"
+              required
+            ></input>
           </label>
           <p>Select the weather type:</p>
           <div>
             <div>
-              <input type="radio" id="hot" value="hot"></input>
-              <label>Hot</label>
+              <input
+                className="modal__input_radio"
+                type="radio"
+                id="hot"
+                value="hot"
+              ></input>
+              <label>
+                Hot
+                {/* <span>Hot</span> */}
+              </label>
             </div>
             <div>
-              <input type="radio" id="warm" value="warm"></input>
-              <label>Warm</label>
+              <input
+                className="modal__input_radio"
+                type="radio"
+                id="warm"
+                value="warm"
+              ></input>
+              <label>
+                Warm
+                {/* <span>Warm</span> */}
+              </label>
             </div>
             <div>
-              <input type="radio" id="cold" value="cold"></input>
-              <label>Cold</label>
+              <input
+                className="modal__input_radio"
+                type="radio"
+                id="cold"
+                value="cold"
+              ></input>
+              <label>
+                Cold
+                {/* <span>Cold</span> */}
+              </label>
             </div>
           </div>
         </ModalWithForm>

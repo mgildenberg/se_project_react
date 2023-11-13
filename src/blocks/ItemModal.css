@@ -55,9 +55,3 @@
   top: 28px;
   cursor: pointer;
 }
-
-form {
-  /* i added this section */
-  display: flex;
-  flex-direction: column;
-}
