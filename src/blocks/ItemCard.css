@@ -26,8 +26,6 @@
 }
 
 .card-section {
-  display: flex;
-  flex-wrap: wrap;
   gap: 20px;
   justify-content: left;
   margin-top: 20px;

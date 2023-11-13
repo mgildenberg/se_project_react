@@ -9,9 +9,6 @@ export const getForecastWeather = () => {
     `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
   ).then((res) => {
     if (res.ok) {
-      console.log(res);
-      //   let parsed = parseWeatherData(res.json());
-      //   return parsed;
       return res.json();
     } else {
       return Promise.reject(`Error: ${res.status}`);
@@ -25,20 +22,12 @@ export const parseWeatherData = (data) => {
   const main = data.main;
   //   console.log("main", main);
   const temperature = main && main.temp;
-
-  console.log("temperature", temperature);
-  //   const weather = main && main.weather;
   return Math.ceil(temperature);
 };
 
 export const parseWeatherLocation = (data) => {
-  //   console.log("parseWeatherData", data);
-  // const main = data.main;
-  //   console.log("main", main);
-  console.log("data name", data.name);
   const location = data.name;
 
-  console.log("location", location);
-  //   const weather = main && main.weather;
+  // console.log("location", location);
   return location;
 };

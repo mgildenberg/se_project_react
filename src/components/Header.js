@@ -1,10 +1,7 @@
 import "../blocks/Header.css";
-// import logo from "./logo.svg";
-// import { useMemo } from "react";
-// import { parseWeatherLocation } from "..utils/weatherApi.js";
 
 const Header = ({ onCreateModal, weatherLocation }) => {
-  console.log("Header");
+  // console.log("Header");
 
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
@@ -12,8 +9,7 @@ const Header = ({ onCreateModal, weatherLocation }) => {
   });
 
   const currentLocation = weatherLocation;
-  console.log("currentLocation", currentLocation);
-  // const currentLocation = "Arizona";
+  // console.log("currentLocation", currentLocation);
 
   return (
     <header className="header">

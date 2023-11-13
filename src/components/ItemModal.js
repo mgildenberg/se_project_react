@@ -1,7 +1,7 @@
 import "../blocks/ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose }) => {
-  console.log("ModalWithForm");
+  // console.log("ModalWithForm");
   return (
     <div className="modal">
       <div className="modal__content modal__content_item-card">
