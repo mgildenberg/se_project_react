@@ -1,21 +1,20 @@
 import "../blocks/Header.css";
+import avatar from "../images/avatar.svg";
+import logo from "../images/logo.svg";
 
 const Header = ({ onCreateModal, weatherLocation }) => {
-  // console.log("Header");
-
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
 
   const currentLocation = weatherLocation;
-  // console.log("currentLocation", currentLocation);
 
   return (
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={require("../images/logo.svg").default} alt="logo"></img>
+          <img src={logo} alt="logo"></img>
         </div>
         <div>
           {currentDate}, {currentLocation}
@@ -31,9 +30,9 @@ const Header = ({ onCreateModal, weatherLocation }) => {
             + Add Clothes
           </button>
         </div>
-        <div>Name</div>
+        <p>Name</p>
         <div>
-          <img src={require("../images/avatar.svg").default} alt="logo"></img>
+          <img src={avatar} alt="logo"></img>
         </div>
       </div>
     </header>

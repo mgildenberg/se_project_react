@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
-import Header from "./components/Header";
-import Main from "./components/Main";
-import Footer from "./components/Footer";
-import ModalWithForm from "./components/ModalWithForm";
-import ItemModal from "./components/ItemModal";
+import "../blocks/App.css";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import ModalWithForm from "./ModalWithForm";
+import ItemModal from "./ItemModal";
 import {
   getForecastWeather,
   parseWeatherData,
   parseWeatherLocation,
-} from "./utils/weatherApi";
+} from "../utils/weatherApi";
 
 function App() {
   // const weatherTemp = "102°F"; // this will be replaced
@@ -33,23 +33,21 @@ function App() {
   };
 
   useEffect(() => {
-    getForecastWeather().then((data) => {
-      // console.log(data);
-      const temp = parseWeatherData(data);
-      setTemp(temp);
-      const location = parseWeatherLocation(data);
-      // setLocation("Arizona");
-      setLocation(location);
-    });
+    getForecastWeather()
+      .then((data) => {
+        // console.log(data);
+        const temp = parseWeatherData(data);
+        setTemp(temp);
+        const location = parseWeatherLocation(data);
+        setLocation(location);
+      })
+      .catch((err) => console.log(err));
   }, []);
-
-  // console.log(temp);
-  const weatherTemp = temp; //`${temp}°F`;
 
   return (
     <div>
       <Header onCreateModal={handleCreateModal} weatherLocation={location} />
-      <Main weatherTemp={weatherTemp} onSelectCard={handleSelectedCard} />
+      <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
       <Footer />
       {activeModal === "create" && (
         <ModalWithForm title="New Garment" onClose={handleCloseModal}>
@@ -84,11 +82,9 @@ function App() {
                 type="radio"
                 id="hot"
                 value="hot"
+                name="radio_button"
               ></input>
-              <label>
-                Hot
-                {/* <span>Hot</span> */}
-              </label>
+              <label htmlFor="hot">Hot</label>
             </div>
             <div>
               <input
@@ -96,11 +92,9 @@ function App() {
                 type="radio"
                 id="warm"
                 value="warm"
+                name="radio_button"
               ></input>
-              <label>
-                Warm
-                {/* <span>Warm</span> */}
-              </label>
+              <label htmlFor="warm">Warm</label>
             </div>
             <div>
               <input
@@ -108,11 +102,9 @@ function App() {
                 type="radio"
                 id="cold"
                 value="cold"
+                name="radio_button"
               ></input>
-              <label>
-                Cold
-                {/* <span>Cold</span> */}
-              </label>
+              <label htmlFor="cold">Cold</label>
             </div>
           </div>
         </ModalWithForm>

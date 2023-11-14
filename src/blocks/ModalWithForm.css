@@ -72,9 +72,6 @@
 }
 
 .modal__input_radio:checked + label {
-  /* background-color: black; */
   color: rgba(0, 0, 0, 1);
-  /* color: rgba(0, 0, 0, 0.3); */
-  /* border-color: black; */
   margin-left: 7px;
 }

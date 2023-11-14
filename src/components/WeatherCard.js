@@ -33,7 +33,11 @@ const WeatherCard = ({ day, type, weatherTemp, weatherUnit }) => {
         {weatherTemp}
         {weatherUnit}
       </div>
-      <img className="weather__image" src={imageSrcUrl}></img>
+      <img
+        className="weather__image"
+        alt={`Background of a ${type} ${day ? "day" : "night"}`}
+        src={imageSrcUrl}
+      ></img>
     </section>
   );
 };
