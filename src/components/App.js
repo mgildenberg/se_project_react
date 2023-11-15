@@ -69,7 +69,7 @@ function App() {
               className="modal__input"
               type="url"
               name="link"
-              minlength="1"
+              minLength="1"
               placeholder="Image URL"
               required
             ></input>

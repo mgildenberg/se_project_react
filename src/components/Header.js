@@ -32,7 +32,7 @@ const Header = ({ onCreateModal, weatherLocation }) => {
         </div>
         <p>Name</p>
         <div>
-          <img src={avatar} alt="logo"></img>
+          <img src={avatar} alt="avatar"></img>
         </div>
       </div>
     </header>
