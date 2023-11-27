@@ -1,0 +1,66 @@
+.switch {
+  display: flex;
+  position: relative;
+  margin-top: 20px;
+}
+
+.switch__box {
+  border-radius: 25px;
+  border: 2px solid black;
+  width: 55px;
+  height: 30px;
+  appearance: none;
+}
+
+.switch__slider {
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+  background-color: #000;
+  /*color: pink; */
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  color: black;
+}
+
+.switch__slider_F {
+  top: 0px;
+  left: 1px;
+  color: #000000;
+}
+
+.switch__slider_C {
+  top: 0px;
+  right: 11px;
+  color: #000000;
+}
+
+.switch_active {
+  position: absolute;
+  color: white;
+  top: -17px;
+  font-size: 16px;
+}
+
+.switch__temp {
+  color: black;
+}
+
+.switch__temp_C {
+  font-size: 16px;
+  color: white;
+  top: -11px;
+  right: 20px;
+}
+
+.switch__temp_F {
+  font-size: 16px;
+  top: -11px;
+  color: white;
+  left: 11px;
+}
+/* 
+.false {
+  margin: 0;
+} */

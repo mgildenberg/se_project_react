@@ -12,7 +12,6 @@ import {
 } from "../utils/weatherApi";
 
 function App() {
-  // const weatherTemp = "102°F"; // this will be replaced
   const [activeModal, setActiveModal] = useState("");
   const [selectedCard, setSelectedCard] = useState({});
   const [temp, setTemp] = useState(0);

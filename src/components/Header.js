@@ -1,14 +1,15 @@
 import "../blocks/Header.css";
 import avatar from "../images/avatar.svg";
 import logo from "../images/logo.svg";
+import ToggleSwitch from "./ToggleSwitch";
 
 const Header = ({ onCreateModal, weatherLocation }) => {
+  const currentLocation = weatherLocation;
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
-
-  const currentLocation = weatherLocation;
 
   return (
     <header className="header">
@@ -21,6 +22,7 @@ const Header = ({ onCreateModal, weatherLocation }) => {
         </div>
       </div>
       <div className="header__avatar-logo">
+        <ToggleSwitch />
         <div>
           <button
             className="header__button"
