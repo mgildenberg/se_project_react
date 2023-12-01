@@ -1,4 +1,5 @@
 import "../blocks/ModalWithForm.css";
+import ToggleSwitch from "./ToggleSwitch";
 
 const ModalWithForm = ({
   children,
@@ -6,8 +7,10 @@ const ModalWithForm = ({
   title,
   onClose,
   name,
+  isOpen,
+  onSubmit,
 }) => {
-  // console.log("ModalWithForm");
+  console.log("ModalWithForm");
   return (
     <div className={`modal modal_type_${name}`}>
       <div className="modal__content">
@@ -17,7 +20,7 @@ const ModalWithForm = ({
           onClick={onClose}
         ></button>
         <h3>{title}</h3>
-        <form>
+        <form onSubmit={onSubmit}>
           {children}
           <button className="modal__submit-button" type="submit">
             {buttonText}

@@ -2,6 +2,7 @@ import "../blocks/Header.css";
 import avatar from "../images/avatar.svg";
 import logo from "../images/logo.svg";
 import ToggleSwitch from "./ToggleSwitch";
+import { Link } from "react-router-dom";
 
 const Header = ({ onCreateModal, weatherLocation }) => {
   const currentLocation = weatherLocation;
@@ -15,7 +16,9 @@ const Header = ({ onCreateModal, weatherLocation }) => {
     <header className="header">
       <div className="header__logo">
         <div>
-          <img src={logo} alt="logo"></img>
+          <Link to="/">
+            <img src={logo} alt="logo"></img>
+          </Link>
         </div>
         <div>
           {currentDate}, {currentLocation}
@@ -32,7 +35,9 @@ const Header = ({ onCreateModal, weatherLocation }) => {
             + Add Clothes
           </button>
         </div>
-        <p>Name</p>
+        <p>
+          <Link to="profile">Name</Link>
+        </p>
         <div>
           <img src={avatar} alt="avatar"></img>
         </div>
