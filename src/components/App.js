@@ -4,6 +4,7 @@ import "../blocks/App.css";
 import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
+import Profile from "./Profile";
 import ModalWithForm from "./ModalWithForm";
 import ItemModal from "./ItemModal";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
@@ -12,7 +13,8 @@ import {
   parseWeatherData,
   parseWeatherLocation,
 } from "../utils/weatherApi";
-import AddItemModal from "../AddItemModal";
+import AddItemModal from "./AddItemModal";
+import { defaultClothingItems } from "../utils/constants";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -20,6 +22,9 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
+  // console.log("defaultclothingitems", defaultClothingItems);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -36,22 +41,38 @@ function App() {
     setActiveModal("preview");
   };
 
+  const handleClickDelete = (values) => {
+    console.log("handleClickDelete", values);
+    // const clothingItems = setClothingItems([values, ...clothingItems]);
+    const valueName = values.name;
+    console.log("valueName", valueName);
+    // Use the filter method to create a new array without the item
+    const updatedItems = clothingItems.filter(
+      (clothingItem) => clothingItem.name !== valueName
+    );
+
+    console.log("updatedItems", updatedItems);
+    // Update the state with the new array
+    setClothingItems(updatedItems);
+    handleCloseModal();
+  };
+
   const handleToggleSwitchChange = (e) => {
-    console.log(e);
-    if (currentTemperatureUnit === "C") {
-      setCurrentTemperatureUnit("F");
-    }
-
-    if (currentTemperatureUnit === "F") {
-      setCurrentTemperatureUnit("C");
-    }
+    currentTemperatureUnit === "F"
+      ? setCurrentTemperatureUnit("C")
+      : setCurrentTemperatureUnit("F");
   };
 
-  const onAddItem = (e) => {
-    console.log(e);
-    console.log(e.target);
-    e.preventDefault();
+  const handleAddItemSubmit = (values) => {
+    console.log("values", values);
+    setClothingItems([values, ...clothingItems]);
+    console.log("clothingitems log", clothingItems);
+    // setClothingItems([item, ...clothingItems]);
   };
+
+  // const handleAddSubmit = (e) => {
+  //   console.log(e);
+  // };
 
   useEffect(() => {
     getForecastWeather()
@@ -65,7 +86,11 @@ function App() {
       .catch((err) => console.log(err));
   }, []);
 
-  console.log(currentTemperatureUnit);
+  useEffect(() => {
+    console.log("Updated clothingItems:", clothingItems);
+  }, [clothingItems]);
+
+  // console.log(currentTemperatureUnit);
   return (
     <div>
       <CurrentTemperatureUnitContext.Provider
@@ -76,19 +101,28 @@ function App() {
           <Route exact path="/">
             <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
           </Route>
-          <Route path="/profile">Profile</Route>
+          <Route path="/profile">
+            <Profile
+              onCreateModal={handleCreateModal}
+              onSelectCard={handleSelectedCard}
+            />
+          </Route>
         </Switch>
         <Footer />
         {activeModal === "create" && (
           <AddItemModal
             handleCloseModal={handleCloseModal}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
             isOpen={activeModal === "create"}
             onSubmit={console.log("meow")}
           />
         )}
         {activeModal === "preview" && (
-          <ItemModal selectedCard={selectedCard} onClose={handleCloseModal} />
+          <ItemModal
+            selectedCard={selectedCard}
+            onClose={handleCloseModal}
+            onClickDelete={handleClickDelete}
+          />
         )}
       </CurrentTemperatureUnitContext.Provider>
     </div>

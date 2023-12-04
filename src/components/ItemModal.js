@@ -1,7 +1,19 @@
 import "../blocks/ItemModal.css";
 
-const ItemModal = ({ selectedCard, onClose }) => {
+const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
   // console.log("ModalWithForm");
+
+  // useEffect(() => onClickDelete())
+
+  const handleDelete = (e) => {
+    e.preventDefault();
+    onClickDelete({
+      name: selectedCard.name,
+      weather: selectedCard.weather,
+      link: selectedCard.link,
+    });
+  };
+
   return (
     <div className="modal">
       <div className="modal__content modal__content_item-card">
@@ -15,9 +27,20 @@ const ItemModal = ({ selectedCard, onClose }) => {
           src={selectedCard.link}
           alt={selectedCard.name}
         />
-        <div className="modal__info">
-          <p className="modal__info-item">{selectedCard.name}</p>
-          <p className="modal__info-item">Weather: {selectedCard.weather}</p>
+        <div className="modal__info-content">
+          <div className="modal__info">
+            <p className="modal__info-item">{selectedCard.name}</p>
+            <p className="modal__info-item">Weather: {selectedCard.weather}</p>
+          </div>
+          {/* <div className="modal__info"> */}
+          <button
+            className="modal__info_delete-item"
+            onClick={handleDelete}
+            type="button"
+          >
+            Delete item
+          </button>
+          {/* </div> */}
         </div>
       </div>
     </div>
