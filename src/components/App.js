@@ -6,6 +6,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import Profile from "./Profile";
 import ModalWithForm from "./ModalWithForm";
+import { getClothes, addClothes, deleteClothes } from "../utils/api";
 import ItemModal from "./ItemModal";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import {
@@ -22,7 +23,10 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
+  // console.log("defaultclothingitems", defaultClothingItems);
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+
+  // console.log("getClothes", getClothes());
 
   // console.log("defaultclothingitems", defaultClothingItems);
 
@@ -45,6 +49,7 @@ function App() {
     console.log("handleClickDelete", values);
     // const clothingItems = setClothingItems([values, ...clothingItems]);
     const valueName = values.name;
+    deleteClothes({ values });
     console.log("valueName", valueName);
     // Use the filter method to create a new array without the item
     const updatedItems = clothingItems.filter(
@@ -67,6 +72,7 @@ function App() {
     console.log("values", values);
     setClothingItems([values, ...clothingItems]);
     console.log("clothingitems log", clothingItems);
+
     // setClothingItems([item, ...clothingItems]);
   };
 
@@ -82,6 +88,10 @@ function App() {
         setTemp(temp);
         const location = parseWeatherLocation(data);
         setLocation(location);
+        getClothes().then((res) => {
+          console.log(res);
+          setClothingItems(res);
+        });
       })
       .catch((err) => console.log(err));
   }, []);
