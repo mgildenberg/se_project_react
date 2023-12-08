@@ -2,7 +2,7 @@ import { defaultClothingItems } from "../utils/constants";
 import "../blocks/Profile.css";
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
-import Sidebar from "./SideBar";
+import SideBar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import { useMemo, useContext } from "react";
 import { Link } from "react-router-dom";
@@ -23,7 +23,7 @@ const Profile = ({
 
   return (
     <main className="profile__main">
-      <Sidebar />
+      <SideBar />
       <ClothesSection
         onSelectCard={onSelectCard}
         onCreateModal={onCreateModal}
