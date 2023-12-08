@@ -36,7 +36,7 @@ const Header = ({ onCreateModal, weatherLocation }) => {
           </button>
         </div>
         <p>
-          <Link className="header__link" to="profile">
+          <Link className="header__link" to="/profile">
             Name
           </Link>
         </p>
