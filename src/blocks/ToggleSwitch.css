@@ -6,10 +6,15 @@
 
 .switch__box {
   border-radius: 25px;
-  border: 2px solid black;
+  border: 2px solid gray;
   width: 55px;
   height: 30px;
   appearance: none;
+  /* z-index: 1; */
+}
+
+.switch__box:hover {
+  border: 2px solid black;
 }
 
 .switch__slider {
@@ -60,6 +65,20 @@
   color: white;
   left: 11px;
 }
+
+/* .switch__temp_C_inactive {
+  font-size: 16px;
+  color: gray;
+  top: -11px;
+  left: 11px;
+} */
+
+/* .switch__temp_F {
+  font-size: 16px;
+  top: -11px;
+  color: gray;
+  left: 11px;
+} */
 /* 
 .false {
   margin: 0;

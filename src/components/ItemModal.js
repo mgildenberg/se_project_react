@@ -1,17 +1,8 @@
 import "../blocks/ItemModal.css";
 
 const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
-  // console.log("ModalWithForm");
-
-  // useEffect(() => onClickDelete())
-
   const handleDelete = (e) => {
     e.preventDefault();
-    // onClickDelete({
-    //   name: selectedCard.name,
-    //   weather: selectedCard.weather,
-    //   link: selectedCard.link,
-    // });
     console.log(
       "ItemModal selectedCard for delete",
       selectedCard._id,
@@ -39,7 +30,6 @@ const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
             <p className="modal__info-item">{selectedCard.name}</p>
             <p className="modal__info-item">Weather: {selectedCard.weather}</p>
           </div>
-          {/* <div className="modal__info"> */}
           <button
             className="modal__info_delete-item"
             onClick={handleDelete}
@@ -47,7 +37,6 @@ const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
           >
             Delete item
           </button>
-          {/* </div> */}
         </div>
       </div>
     </div>

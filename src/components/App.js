@@ -5,7 +5,6 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import Profile from "./Profile";
-import ModalWithForm from "./ModalWithForm";
 import { getClothes, addClothes, deleteClothes } from "../utils/api";
 import ItemModal from "./ItemModal";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
@@ -15,7 +14,6 @@ import {
   parseWeatherLocation,
 } from "../utils/weatherApi";
 import AddItemModal from "./AddItemModal";
-import { defaultClothingItems } from "../utils/constants";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -23,13 +21,7 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
-  // console.log("defaultclothingitems", defaultClothingItems);
   const [clothingItems, setClothingItems] = useState([]);
-
-  //defaultClothingItems
-  // console.log("getClothes", getClothes());
-
-  // console.log("defaultclothingitems", defaultClothingItems);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -84,25 +76,18 @@ function App() {
         const location = parseWeatherLocation(data);
         setLocation(location);
         getClothes().then((res) => {
-          console.log("getclothes() res", res);
           setClothingItems(res);
         });
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   console.log("Updated clothingItems:", clothingItems);
-  // }, [clothingItems]);
-
   useEffect(() => {
     getClothes()
       .then((data) => {
         setClothingItems(data);
       })
-      .catch((error) => {
-        console.error(error);
-      });
+      .catch((error) => {});
   }, []);
 
   return (

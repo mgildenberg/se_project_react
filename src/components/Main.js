@@ -33,8 +33,6 @@ const Main = ({ weatherTemp, onSelectCard, clothingItems }) => {
 
   const weatherUnit = `°${currentTemperatureUnit}`;
 
-  console.log("Main.js clothingItems", clothingItems);
-
   const filteredCards = clothingItems.filter((item) => {
     // console.log("filteredCard map item", item);
     return item.weather.toLowerCase() === weatherType;

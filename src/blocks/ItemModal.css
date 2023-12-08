@@ -16,14 +16,16 @@
   width: 100%;
   border-radius: 20px;
   padding: 34px 36px;
+  /* padding: 0px 0px; */
   /* font-family: "Cabinet Grotesk - Medium"; */
   font-weight: 700;
   position: relative;
 }
 
 /* modifier */
-.modal__content_item-card {
-  padding: 0 0 0 0;
+.modal .modal__content_item-card {
+  padding: 0 0;
+  margin: 0;
 }
 
 .modal__image {

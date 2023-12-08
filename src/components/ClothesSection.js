@@ -1,15 +1,8 @@
-//import { defaultClothingItems } from "../utils/constants";
-// import { clothingItems } from "./App";
 import "../blocks/ClothesSection.css";
-// import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
-import { useState } from "react";
-// import { Link } from "react-router-dom";
-// import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
-// import avatar from "../images/avatar.svg";
+// import { useState } from "react";
 
 const ClothesSection = ({ onSelectCard, onCreateModal, clothingItems }) => {
-  console.log("ClothesSection clothingItems", clothingItems);
   return (
     <section className="clothes-section" id="clothes-section>">
       <div className="clothes-section__header">

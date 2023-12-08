@@ -1,7 +1,6 @@
 import "../blocks/Footer.css";
 
 function Footer() {
-  // console.log("Footer");
   return (
     <footer className="footer">
       <div>Developed by Maddie Gildenberg</div>

@@ -19,14 +19,7 @@ const Profile = ({
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
   // console.log(currentTemperatureUnit);
 
-  const weatherUnit = `°${currentTemperatureUnit}`;
-
-  // const filteredCards = defaultClothingItems.filter((item) => {
-  //   // console.log("filteredCard map item", item);
-  //   return item.weather.toLowerCase() === weatherType;
-  // });
-
-  // console.log("filteredCards", filteredCards);
+  // const weatherUnit = `°${currentTemperatureUnit}`;
 
   return (
     <main className="profile__main">
