@@ -2,7 +2,7 @@ import { defaultClothingItems } from "../utils/constants";
 import "../blocks/Profile.css";
 import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
-import Sidebar from "./Sidebar";
+import Sidebar from "./SideBar";
 import ClothesSection from "./ClothesSection";
 import { useMemo, useContext } from "react";
 import { Link } from "react-router-dom";
