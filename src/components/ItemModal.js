@@ -7,11 +7,18 @@ const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
 
   const handleDelete = (e) => {
     e.preventDefault();
-    onClickDelete({
-      name: selectedCard.name,
-      weather: selectedCard.weather,
-      link: selectedCard.link,
-    });
+    // onClickDelete({
+    //   name: selectedCard.name,
+    //   weather: selectedCard.weather,
+    //   link: selectedCard.link,
+    // });
+    console.log(
+      "ItemModal selectedCard for delete",
+      selectedCard._id,
+      selectedCard.id
+    );
+
+    onClickDelete(selectedCard._id);
   };
 
   return (
@@ -24,7 +31,7 @@ const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
         ></button>
         <img
           className="modal__image"
-          src={selectedCard.link}
+          src={selectedCard.imageUrl}
           alt={selectedCard.name}
         />
         <div className="modal__info-content">

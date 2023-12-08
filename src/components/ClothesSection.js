@@ -1,13 +1,15 @@
-import { defaultClothingItems } from "../utils/constants";
+//import { defaultClothingItems } from "../utils/constants";
+// import { clothingItems } from "./App";
 import "../blocks/ClothesSection.css";
 // import WeatherCard from "./WeatherCard";
 import ItemCard from "./ItemCard";
-// import { useMemo, useContext } from "react";
+import { useState } from "react";
 // import { Link } from "react-router-dom";
 // import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 // import avatar from "../images/avatar.svg";
 
-const ClothesSection = ({ onSelectCard, onCreateModal }) => {
+const ClothesSection = ({ onSelectCard, onCreateModal, clothingItems }) => {
+  console.log("ClothesSection clothingItems", clothingItems);
   return (
     <section className="clothes-section" id="clothes-section>">
       <div className="clothes-section__header">
@@ -23,7 +25,7 @@ const ClothesSection = ({ onSelectCard, onCreateModal }) => {
         </div>
       </div>
       <div className="card__items">
-        {defaultClothingItems.map((item) => {
+        {clothingItems.map((item) => {
           return (
             <ItemCard item={item} onSelectCard={onSelectCard} key={item._id} />
           );

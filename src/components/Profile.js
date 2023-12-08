@@ -9,10 +9,15 @@ import { Link } from "react-router-dom";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import avatar from "../images/avatar.svg";
 
-const Profile = ({ weatherTemp, onSelectCard, onCreateModal }) => {
+const Profile = ({
+  weatherTemp,
+  onSelectCard,
+  onCreateModal,
+  clothingItems,
+}) => {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
-  console.log(currentTemperatureUnit);
+  // console.log(currentTemperatureUnit);
 
   const weatherUnit = `°${currentTemperatureUnit}`;
 
@@ -29,6 +34,7 @@ const Profile = ({ weatherTemp, onSelectCard, onCreateModal }) => {
       <ClothesSection
         onSelectCard={onSelectCard}
         onCreateModal={onCreateModal}
+        clothingItems={clothingItems}
       />
     </main>
   );

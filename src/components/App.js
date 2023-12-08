@@ -24,8 +24,9 @@ function App() {
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   // console.log("defaultclothingitems", defaultClothingItems);
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
+  //defaultClothingItems
   // console.log("getClothes", getClothes());
 
   // console.log("defaultclothingitems", defaultClothingItems);
@@ -45,17 +46,13 @@ function App() {
     setActiveModal("preview");
   };
 
-  const handleClickDelete = (values) => {
-    console.log("handleClickDelete", values);
-    // const clothingItems = setClothingItems([values, ...clothingItems]);
-    const valueName = values.name;
-    deleteClothes({ values });
-    console.log("valueName", valueName);
+  const handleClickDelete = (id) => {
+    console.log("handleClickDelete", id);
+    deleteClothes(id);
     // Use the filter method to create a new array without the item
     const updatedItems = clothingItems.filter(
-      (clothingItem) => clothingItem.name !== valueName
+      (clothingItem) => clothingItem._id !== id
     );
-
     console.log("updatedItems", updatedItems);
     // Update the state with the new array
     setClothingItems(updatedItems);
@@ -70,15 +67,13 @@ function App() {
 
   const handleAddItemSubmit = (values) => {
     console.log("values", values);
-    setClothingItems([values, ...clothingItems]);
-    console.log("clothingitems log", clothingItems);
-
-    // setClothingItems([item, ...clothingItems]);
+    addClothes(values)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        handleCloseModal();
+      })
+      .catch((error) => console.error(error));
   };
-
-  // const handleAddSubmit = (e) => {
-  //   console.log(e);
-  // };
 
   useEffect(() => {
     getForecastWeather()
@@ -89,18 +84,27 @@ function App() {
         const location = parseWeatherLocation(data);
         setLocation(location);
         getClothes().then((res) => {
-          console.log(res);
+          console.log("getclothes() res", res);
           setClothingItems(res);
         });
       })
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    console.log("Updated clothingItems:", clothingItems);
-  }, [clothingItems]);
+  // useEffect(() => {
+  //   console.log("Updated clothingItems:", clothingItems);
+  // }, [clothingItems]);
 
-  // console.log(currentTemperatureUnit);
+  useEffect(() => {
+    getClothes()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <div>
       <CurrentTemperatureUnitContext.Provider
@@ -109,12 +113,17 @@ function App() {
         <Header onCreateModal={handleCreateModal} weatherLocation={location} />
         <Switch>
           <Route exact path="/">
-            <Main weatherTemp={temp} onSelectCard={handleSelectedCard} />
+            <Main
+              weatherTemp={temp}
+              onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
+            />
           </Route>
           <Route path="/profile">
             <Profile
               onCreateModal={handleCreateModal}
               onSelectCard={handleSelectedCard}
+              clothingItems={clothingItems}
             />
           </Route>
         </Switch>
@@ -124,7 +133,7 @@ function App() {
             handleCloseModal={handleCloseModal}
             onAddItem={handleAddItemSubmit}
             isOpen={activeModal === "create"}
-            onSubmit={console.log("meow")}
+            onSubmit={addClothes}
           />
         )}
         {activeModal === "preview" && (
@@ -138,5 +147,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

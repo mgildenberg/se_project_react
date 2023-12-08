@@ -23,7 +23,7 @@ export const parseWeatherData = (data) => {
     },
   };
 
-  console.log(weather);
+  // console.log(weather);
   return weather; //Math.ceil(temperature);
 };
 
