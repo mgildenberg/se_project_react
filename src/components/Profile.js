@@ -29,7 +29,7 @@ const Profile = ({
   // console.log("filteredCards", filteredCards);
 
   return (
-    <main className="main">
+    <main className="profile__main">
       <Sidebar />
       <ClothesSection
         onSelectCard={onSelectCard}

@@ -28,3 +28,13 @@
   font-size: 20px;
   background: none;
 }
+
+.header__link {
+  text-decoration: none;
+  color: black;
+}
+
+.header__link:visited {
+  text-decoration: none;
+  color: black;
+}

@@ -1,0 +1,18 @@
+.sidebar {
+  max-width: 330px;
+  width: 100%;
+  display: flex;
+  column-gap: 10px;
+  /* flex-basis: baseline; */
+  align-items: flex-start;
+}
+
+.sidebar__link {
+  text-decoration: none;
+  color: black;
+}
+
+.sidebar__link:visited {
+  text-decoration: none;
+  color: black;
+}

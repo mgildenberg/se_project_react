@@ -1,5 +1,5 @@
 import { defaultClothingItems } from "../utils/constants";
-import "../blocks/Profile.css";
+import "../blocks/Sidebar.css";
 // import WeatherCard from "./WeatherCard";
 // import ItemCard from "./ItemCard";
 // import ClothesSection from "./ClothesSection";
@@ -15,7 +15,9 @@ const Sidebar = () => {
         <img src={avatar} alt="avatar"></img>
       </div>
       <p>
-        <Link to="profile">Name</Link>
+        <Link className="sidebar__link" to="profile">
+          Name
+        </Link>
       </p>
     </section>
   );

@@ -1,0 +1,15 @@
+.clothes-section__header {
+  display: flex;
+  column-gap: 15px;
+}
+
+.clothes-section__card__items {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.clothes-section__button {
+  color: rgb(0, 0, 0, 0.6);
+}

@@ -1,0 +1,6 @@
+.profile__main {
+  display: flex;
+  padding: 0 20px;
+  font-weight: 500;
+  overflow-wrap: none;
+}
