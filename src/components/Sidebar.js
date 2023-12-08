@@ -1,5 +1,5 @@
 import { defaultClothingItems } from "../utils/constants";
-import "../blocks/Sidebar.css";
+import "../blocks/SideBar.css";
 // import WeatherCard from "./WeatherCard";
 // import ItemCard from "./ItemCard";
 // import ClothesSection from "./ClothesSection";
