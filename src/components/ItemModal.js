@@ -3,12 +3,11 @@ import "../blocks/ItemModal.css";
 const ItemModal = ({ selectedCard, onClose, onClickDelete }) => {
   const handleDelete = (e) => {
     e.preventDefault();
-    console.log(
-      "ItemModal selectedCard for delete",
-      selectedCard._id,
-      selectedCard.id
-    );
-
+    // console.log(
+    //   "ItemModal selectedCard for delete",
+    //   selectedCard._id,
+    //   selectedCard.id
+    // );
     onClickDelete(selectedCard._id);
   };
 

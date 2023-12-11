@@ -97,8 +97,8 @@
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
     },
     {
-      "name": "T Shirts",
-      "imageUrl": "https://images.pexels.com/photos/581087/pexels-photo-581087.jpeg",
+      "name": "Delete Me",
+      "imageUrl": "https://sd.keepcalms.com/i/keep-calm-and-delete-me.png",
       "weather": "warm",
       "_id": 17
     }

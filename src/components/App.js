@@ -5,7 +5,12 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import Profile from "./Profile";
-import { getClothes, addClothes, deleteClothes } from "../utils/api";
+import {
+  getClothes,
+  addClothes,
+  deleteClothes,
+  checkServerResponse,
+} from "../utils/api";
 import ItemModal from "./ItemModal";
 import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
 import {
@@ -40,15 +45,14 @@ function App() {
 
   const handleClickDelete = (id) => {
     console.log("handleClickDelete", id);
-    deleteClothes(id);
-    // Use the filter method to create a new array without the item
-    const updatedItems = clothingItems.filter(
-      (clothingItem) => clothingItem._id !== id
-    );
-    console.log("updatedItems", updatedItems);
-    // Update the state with the new array
-    setClothingItems(updatedItems);
-    handleCloseModal();
+    deleteClothes(id).then((data) => {
+      console.log("handleClickDelete DeleteClothes", data);
+      const updatedItems = clothingItems.filter(
+        (clothingItem) => clothingItem._id !== id
+      );
+      setClothingItems(updatedItems);
+      handleCloseModal();
+    });
   };
 
   const handleToggleSwitchChange = (e) => {
@@ -75,20 +79,25 @@ function App() {
         setTemp(temp);
         const location = parseWeatherLocation(data);
         setLocation(location);
-        getClothes().then((res) => {
-          setClothingItems(res);
-        });
+        getClothes()
+          .then(checkServerResponse)
+          .then((res) => {
+            console.log("we here in the useeffect heyyyy");
+            setClothingItems(res);
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  useEffect(() => {
-    getClothes()
-      .then((data) => {
-        setClothingItems(data);
-      })
-      .catch((error) => {});
-  }, []);
+  // useEffect(() => {
+  //   getClothes()
+  //     .then(checkServerResponse)
+  //     .then((data) => {
+  //       setClothingItems(data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <div>

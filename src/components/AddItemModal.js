@@ -19,7 +19,7 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
   const [radio, setRadio] = useState("");
 
   const handleRadioChange = (e) => {
-    setRadio(e.target.id);
+    setRadio(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -69,10 +69,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__input_radio"
             type="radio"
             id="hot"
-            // value="hot"
             name="radio_button"
             onChange={handleRadioChange}
-            value={radio}
+            value="hot"
           ></input>
           <label htmlFor="hot">Hot</label>
         </div>
@@ -81,10 +80,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__input_radio"
             type="radio"
             id="warm"
-            // value="warm"
             name="radio_button"
             onChange={handleRadioChange}
-            value={radio}
+            value="warm"
           ></input>
           <label htmlFor="warm">Warm</label>
         </div>
@@ -93,10 +91,9 @@ const AddItemModal = ({ handleCloseModal, onAddItem, isOpen }) => {
             className="modal__input_radio"
             type="radio"
             id="cold"
-            // value="cold"
             name="radio_button"
             onChange={handleRadioChange}
-            value={radio}
+            value="cold"
           ></input>
           <label htmlFor="cold">Cold</label>
         </div>

@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-const checkServerResponse = (res) => {
+export const checkServerResponse = (res) => {
   if (res.ok) {
     return res.json();
   } else {
@@ -9,14 +9,15 @@ const checkServerResponse = (res) => {
 };
 
 export const getClothes = () => {
-  const defaultClothingItems = fetch(`${baseUrl}/items`).then(
-    checkServerResponse
-  );
+  const defaultClothingItems = fetch(`${baseUrl}/items`);
+  //   .then(
+  //     checkServerResponse
+  //   );
   return defaultClothingItems;
 };
 
 export const addClothes = ({ name, imageUrl, weather }) => {
-  console.log("addClothes", { name, imageUrl, weather });
+  //   console.log("addClothes", { name, imageUrl, weather });
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -31,7 +32,7 @@ export const addClothes = ({ name, imageUrl, weather }) => {
 };
 
 export const deleteClothes = (id) => {
-  console.log("deleteclothes api.js", id);
+  //   console.log("deleteclothes api.js", id);
   return fetch(`${baseUrl}/items/${id}`, {
     method: "DELETE",
   }).then(checkServerResponse);

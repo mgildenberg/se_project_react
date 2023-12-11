@@ -1,24 +1,6 @@
 import "../blocks/WeatherCard.css";
-import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
-
-const weatherOptions = [
-  { url: require("../images/day/sunny.svg").default, day: true, type: "sunny" },
-  {
-    url: require("../images/day/cloudy.svg").default,
-    day: true,
-    type: "cloudy",
-  },
-  {
-    url: require("../images/night/cloudy.svg").default,
-    day: false,
-    type: "cloudy",
-  },
-  {
-    url: require("../images/night/moon.svg").default,
-    day: false,
-    type: "moon",
-  },
-];
+// import { CurrentTemperatureUnitContext } from "../contexts/CurrentTemperatureUnitContext";
+import { weatherOptions } from "../utils/constants";
 
 const WeatherCard = ({ day, type, weatherTemp, weatherUnit }) => {
   // console.log("WeatherCard");
