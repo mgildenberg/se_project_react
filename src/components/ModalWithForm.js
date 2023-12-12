@@ -9,6 +9,7 @@ const ModalWithForm = ({
   name,
   isOpen,
   onSubmit,
+  isLoading,
 }) => {
   return (
     <div className={`modal modal_type_${name}`}>
@@ -17,12 +18,12 @@ const ModalWithForm = ({
           className="modal__close-button"
           type="button"
           onClick={onClose}
-        ></button>
+        />
         <h3>{title}</h3>
         <form onSubmit={onSubmit}>
           {children}
           <button className="modal__submit-button" type="submit">
-            {buttonText}
+            {(buttonText = isLoading ? "Saving..." : "Save")}
           </button>
         </form>
       </div>

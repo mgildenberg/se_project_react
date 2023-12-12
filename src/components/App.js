@@ -27,6 +27,7 @@ function App() {
   const [location, setLocation] = useState("");
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateModal = () => {
     setActiveModal("create");
@@ -38,15 +39,35 @@ function App() {
     setSelectedCard({});
   };
 
+  //
+
+  useEffect(() => {
+    if (!activeModal) return; // stop the effect not to add the listener if there is no active modal
+    const handleEscClose = (e) => {
+      // define the function inside useEffect not to lose the reference on rerendering
+      if (e.key === "Escape") {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener("keydown", handleEscClose);
+    return () => {
+      // don't forget to add a clean up function for removing the listener
+      document.removeEventListener("keydown", handleEscClose);
+    };
+  }, [activeModal]); // watch activeModal here
+
+  //
+
   const handleSelectedCard = (card) => {
     setSelectedCard(card);
     setActiveModal("preview");
   };
 
   const handleClickDelete = (id) => {
-    console.log("handleClickDelete", id);
+    // console.log("handleClickDelete", id);
     deleteClothes(id).then((data) => {
-      console.log("handleClickDelete DeleteClothes", data);
+      // console.log("handleClickDelete DeleteClothes", data);
       const updatedItems = clothingItems.filter(
         (clothingItem) => clothingItem._id !== id
       );
@@ -63,12 +84,16 @@ function App() {
 
   const handleAddItemSubmit = (values) => {
     console.log("values", values);
+    setIsLoading(true);
     addClothes(values)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
         handleCloseModal();
       })
-      .catch((error) => console.error(error));
+      .catch((error) => console.error(error))
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -79,66 +104,60 @@ function App() {
         setTemp(temp);
         const location = parseWeatherLocation(data);
         setLocation(location);
-        getClothes()
-          .then(checkServerResponse)
-          .then((res) => {
-            console.log("we here in the useeffect heyyyy");
-            setClothingItems(res);
-          })
-          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   getClothes()
-  //     .then(checkServerResponse)
-  //     .then((data) => {
-  //       setClothingItems(data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }, []);
+  useEffect(() => {
+    getClothes()
+      .then(checkServerResponse)
+      .then((res) => {
+        setClothingItems(res);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
-    <div>
-      <CurrentTemperatureUnitContext.Provider
-        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-      >
-        <Header onCreateModal={handleCreateModal} weatherLocation={location} />
-        <Switch>
-          <Route exact path="/">
-            <Main
-              weatherTemp={temp}
-              onSelectCard={handleSelectedCard}
-              clothingItems={clothingItems}
-            />
-          </Route>
-          <Route path="/profile">
-            <Profile
-              onCreateModal={handleCreateModal}
-              onSelectCard={handleSelectedCard}
-              clothingItems={clothingItems}
-            />
-          </Route>
-        </Switch>
-        <Footer />
-        {activeModal === "create" && (
-          <AddItemModal
-            handleCloseModal={handleCloseModal}
-            onAddItem={handleAddItemSubmit}
-            isOpen={activeModal === "create"}
-            onSubmit={addClothes}
+    // <div>
+    <CurrentTemperatureUnitContext.Provider
+      value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+    >
+      <Header onCreateModal={handleCreateModal} weatherLocation={location} />
+      <Switch>
+        <Route exact path="/">
+          <Main
+            weatherTemp={temp}
+            onSelectCard={handleSelectedCard}
+            clothingItems={clothingItems}
           />
-        )}
-        {activeModal === "preview" && (
-          <ItemModal
-            selectedCard={selectedCard}
-            onClose={handleCloseModal}
-            onClickDelete={handleClickDelete}
+        </Route>
+        <Route path="/profile">
+          <Profile
+            onCreateModal={handleCreateModal}
+            onSelectCard={handleSelectedCard}
+            clothingItems={clothingItems}
           />
-        )}
-      </CurrentTemperatureUnitContext.Provider>
-    </div>
+        </Route>
+      </Switch>
+      <Footer />
+      {activeModal === "create" && (
+        <AddItemModal
+          handleCloseModal={handleCloseModal}
+          onAddItem={handleAddItemSubmit}
+          isOpen={activeModal === "create"}
+          onSubmit={addClothes}
+          isLoading={isLoading}
+        />
+      )}
+      {activeModal === "preview" && (
+        <ItemModal
+          selectedCard={selectedCard}
+          onClose={handleCloseModal}
+          onClickDelete={handleClickDelete}
+        />
+      )}
+    </CurrentTemperatureUnitContext.Provider>
+    // </div>
   );
 }
 export default App;

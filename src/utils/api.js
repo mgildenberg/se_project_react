@@ -9,11 +9,10 @@ export const checkServerResponse = (res) => {
 };
 
 export const getClothes = () => {
-  const defaultClothingItems = fetch(`${baseUrl}/items`);
+  return fetch(`${baseUrl}/items`);
   //   .then(
   //     checkServerResponse
   //   );
-  return defaultClothingItems;
 };
 
 export const addClothes = ({ name, imageUrl, weather }) => {
