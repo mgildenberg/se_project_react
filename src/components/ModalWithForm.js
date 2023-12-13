@@ -23,7 +23,7 @@ const ModalWithForm = ({
         <form onSubmit={onSubmit}>
           {children}
           <button className="modal__submit-button" type="submit">
-            {(buttonText = isLoading ? "Saving..." : "Save")}
+            {isLoading ? "Saving..." : buttonText}
           </button>
         </form>
       </div>

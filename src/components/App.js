@@ -57,43 +57,49 @@ function App() {
     };
   }, [activeModal]); // watch activeModal here
 
-  //
-
-  const handleSelectedCard = (card) => {
-    setSelectedCard(card);
-    setActiveModal("preview");
-  };
-
-  const handleClickDelete = (id) => {
-    // console.log("handleClickDelete", id);
-    deleteClothes(id).then((data) => {
-      // console.log("handleClickDelete DeleteClothes", data);
-      const updatedItems = clothingItems.filter(
-        (clothingItem) => clothingItem._id !== id
-      );
-      setClothingItems(updatedItems);
-      handleCloseModal();
-    });
-  };
-
   const handleToggleSwitchChange = (e) => {
     currentTemperatureUnit === "F"
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
 
-  const handleAddItemSubmit = (values) => {
-    console.log("values", values);
+  const handleSelectedCard = (card) => {
+    setSelectedCard(card);
+    setActiveModal("preview");
+  };
+
+  function handleModalSubmit(request) {
+    // start loading
     setIsLoading(true);
-    addClothes(values)
-      .then((data) => {
-        setClothingItems([data, ...clothingItems]);
-        handleCloseModal();
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setIsLoading(false);
+    request()
+      // we need to close only in `then`
+      .then(handleCloseModal)
+      // we need to catch possible errors
+      // console.error is used to handle errors if you don’t have any other ways for that
+      .catch(console.error)
+      // and in finally we need to stop loading
+      .finally(() => setIsLoading(false));
+  }
+
+  const handleClickDelete = (id) => {
+    const makeRequest = () => {
+      return deleteClothes(id).then(() => {
+        const updatedItems = clothingItems.filter(
+          (clothingItem) => clothingItem._id !== id
+        );
+        setClothingItems(updatedItems);
       });
+    };
+    handleModalSubmit(makeRequest);
+  };
+
+  const handleAddItemSubmit = (values) => {
+    const makeRequest = () => {
+      return addClothes(values).then((data) => {
+        setClothingItems([data, ...clothingItems]);
+      });
+    };
+    handleModalSubmit(makeRequest);
   };
 
   useEffect(() => {
